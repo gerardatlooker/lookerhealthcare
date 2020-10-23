@@ -7,6 +7,39 @@ include: "/data_science/*.view.lkml"
 
 label: "Healthcare Systems and Providers"
 
+
+
+
+############ Simplified View Explores #############
+
+explore: condition_simple {
+  view_label: "Condition"
+  label: "1) Patient, Encounter & Condition (Simplified)"
+  description: "Start Here!"
+
+  join: patient_simple {
+    view_label: "Patient"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${condition_simple.patient_id} = ${patient_simple.id} ;;
+  }
+
+  join: encounter_simple {
+    view_label: "Encounter"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${encounter_simple.id} = ${condition_simple.encounter_id} ;;
+  }
+}
+
+
+
+
+
+
+
+
+
 ############ Unnested Explores #############
 
 ####### Step 1: Base explores
@@ -571,27 +604,6 @@ explore: patient_encounter_ccf {
 
 
 
-############ Simplified View Explores #############
-
-explore: condition_simple {
-  view_label: "Condition"
-  label: " Simplified Patient, Encounter & Condition"
-  description: "Start Here!"
-
-  join: patient_simple {
-    view_label: "Patient"
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${condition_simple.patient_id} = ${patient_simple.id} ;;
-  }
-
-  join: encounter_simple {
-    view_label: "Encounter"
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${encounter_simple.id} = ${condition_simple.encounter_id} ;;
-  }
-}
 
 
 
