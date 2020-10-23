@@ -242,12 +242,8 @@ view: patient {
     type: string
     description: "Only users with sufficient permissions will see this data"
     sql:
-        CASE
-          WHEN '{{_user_attributes["can_see_sensitive_data"]}}' = 'yes'
-                THEN ${ssn}
-                ELSE concat('###-##-',substr(${ssn},1,4))
-                --ELSE TO_BASE64(SHA1(${ssn}))
-          END ;;
+        substr(${ssn},1,4) ;;
+
   }
 
   #########  Measures  #########

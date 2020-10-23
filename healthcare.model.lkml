@@ -4,7 +4,6 @@ include: "/simplified_views/*.view.lkml"
 include: "/unnested_views/*.view.lkml"
 include: "/realtime_views/*.view.lkml"
 include: "/data_science/*.view.lkml"
-include: "dashboards/*.dashboard.lookml"
 
 label: "Healthcare Systems and Providers"
 
@@ -577,12 +576,15 @@ explore: patient_encounter_ccf {
 explore: condition_simple {
   view_label: "Condition"
   label: " Simplified Patient, Encounter & Condition"
+  description: "Start Here!"
+
   join: patient_simple {
     view_label: "Patient"
     type: left_outer
     relationship: many_to_one
     sql_on: ${condition_simple.patient_id} = ${patient_simple.id} ;;
   }
+
   join: encounter_simple {
     view_label: "Encounter"
     type: left_outer
@@ -590,6 +592,12 @@ explore: condition_simple {
     sql_on: ${encounter_simple.id} = ${condition_simple.encounter_id} ;;
   }
 }
+
+
+
+
+
+
 
 explore: realtime_observations {
   hidden: yes
