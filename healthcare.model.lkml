@@ -45,7 +45,7 @@ explore: patient_encounter {
   extends: [encounter,patient, diagnostic_report]
   from: encounter
   view_name: encounter
-  label: "Patient Encounter"
+  label: "2) Patient Encounter (More complex)"
   join: patient {
     relationship: many_to_one
     sql_on: ${encounter.patient_id} = ${patient.id} ;;
