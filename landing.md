@@ -4,7 +4,7 @@
   <div style="width: 100%; text-align: left; padding-top: 25px;">
     <h1 style="color: rgb(0,101,204)">Welcome to the Roche Looker Sandbox</h1>
 
-    <p><b>Looker</b> is Roche's Data Access Layer. It acts as an abstraction point between BigQuery and your applications. This sandbox contains some dummy data. The sandbox will expire 13th Nov 2020</p>
+    <p><b>Looker</b> is Roche's Data Access Layer. It acts as an abstraction point between BigQuery and your applications. This sandbox contains some dummy data. The sandbox will expire 13th Nov 2020s</p>
 
 
 
