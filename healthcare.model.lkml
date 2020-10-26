@@ -10,7 +10,8 @@ label: "Healthcare Systems and Providers"
 
 
 
-############ Simplified View Explores #############
+############ Simplified View Explore #############
+############ Views found in Simplified Views folder  #############
 
 explore: condition_simple {
   view_label: "Condition"
@@ -36,8 +37,41 @@ explore: condition_simple {
 
 
 
+############ Complex View Explores #############
+############ Views found in Unnested Views folder  #############
+
+explore: patient_encounter {
+  hidden: no
+  extends: [encounter,patient, diagnostic_report]
+  from: encounter
+  view_name: encounter
+  label: "Patient Encounter"
+  join: patient {
+    relationship: many_to_one
+    sql_on: ${encounter.patient_id} = ${patient.id} ;;
+  }
+  join: organization {
+    relationship: many_to_one
+    sql_on: ${organization.id} = ${encounter.organization_id} ;;
+  }
+  join: organization__address {
+    relationship: many_to_one
+    sql: LEFT JOIN UNNEST(${organization.address}) as organization__address;;
+  }
+  join: practitioner {
+    relationship: many_to_one
+    sql_on: ${practitioner.id} = ${encounter__participant.practitionerId} ;;
+  }
+  join: diagnostic_report {
+    relationship: many_to_one
+    sql_on: ${diagnostic_report.context__encounter_id} = ${encounter.id} ;;
+  }
+}
 
 
+
+
+############ Other stuff - look if you are curious #############
 
 
 ############ Unnested Explores #############
@@ -331,33 +365,6 @@ explore: claim {
 
 ####### Step 2: Extend explores together
 
-explore: patient_encounter {
-  hidden: no
-  extends: [encounter,patient, diagnostic_report]
-  from: encounter
-  view_name: encounter
-  label: "Patient Encounter"
-  join: patient {
-    relationship: many_to_one
-    sql_on: ${encounter.patient_id} = ${patient.id} ;;
-  }
-  join: organization {
-    relationship: many_to_one
-    sql_on: ${organization.id} = ${encounter.organization_id} ;;
-  }
-  join: organization__address {
-    relationship: many_to_one
-    sql: LEFT JOIN UNNEST(${organization.address}) as organization__address;;
-  }
-  join: practitioner {
-    relationship: many_to_one
-    sql_on: ${practitioner.id} = ${encounter__participant.practitionerId} ;;
-  }
-  join: diagnostic_report {
-    relationship: many_to_one
-    sql_on: ${diagnostic_report.context__encounter_id} = ${encounter.id} ;;
-  }
-}
 
 explore: observation_extended {
   hidden: yes
