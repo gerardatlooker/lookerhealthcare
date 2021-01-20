@@ -581,7 +581,7 @@ view: encounter__reason__coding {
 
   dimension: is_covid_flag {
     type: yesno
-    sql: ${code} in ('65710008', '195967001', '233678006', '185086009', '233604007') ;;
+    sql: ${code} in ('37364348', '65710008', '195967001', '233678006', '185086009', '233604007') ;;
   }
 
   dimension: display {
